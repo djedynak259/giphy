@@ -6,25 +6,34 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      filterText: ''
+      filterText: '',
+      search:''
     }
 
     this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
+    this.searchSubmit = this.searchSubmit.bind(this);
   }
 
-  handleFilterTextInput(filterText) {
+  handleFilterTextInput(e) {
     this.setState({
-      filterText: filterText
+      filterText: e
     });
+  }
+
+  searchSubmit(e) {
+    this.setState({
+      search: e
+    })
   }
 
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to React</h2>
+          <h2>Welcome to Reacsdst</h2>
           <SearchBar filterText={this.state.filterText}
-            onFilterTextInput={this.handleFilterTextInput}
+            handleChange={this.handleFilterTextInput}
+            onSubmitTextInput={this.searchSubmit}
           />
         </div>
         <p className="App-intro">
