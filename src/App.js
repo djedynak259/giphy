@@ -29,7 +29,8 @@ class App extends Component {
             onSubmitTextInput={this.searchSubmit}
           />
         </div>
-        <GiphyLoader keyword={this.state.search}/>
+        <GiphyLoader keyword={this.state.search}
+                      />
       </div>
     );
   }

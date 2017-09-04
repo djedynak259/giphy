@@ -17,25 +17,36 @@ import React, { Component } from 'react';
     }
 
 class GiphyLoader extends Component {
-  
-  render() {
+  constructor(props){
+    super(props);
+    this.state = {
+      results: null
+    }
+    this.resultState = this.resultState.bind(this);
+  }
+
+  resultState(){
 
     let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&limit=6`;
 
-    if(this.props.keyword.length){
-      get(url).then(function(text) {
-        const results = JSON.parse(text).data.map(e=>
-          <li key={e.toString()}>
-            {e.images.downsized.url}
-          </li>
+    get(url).then(function(text) {
+      this.setState({
+        results: JSON.parse(text).data.map(e=>
+        <li key={e.toString()}>
+          {e.images.downsized.url}
+        </li>
         )
-      
-          console.log(JSON.parse(text));
-          console.log(results)
-        }, function(error) {
-          console.log("Failed to fetch data.txt: " + error);
       })
-    }
+    
+        console.log(JSON.parse(text));
+        console.log(this.state.results)
+      }, function(error) {
+        console.log("Failed to fetch data.txt: " + error);
+    })
+    
+  }
+
+  render() {
 
     return (
       <ul>
