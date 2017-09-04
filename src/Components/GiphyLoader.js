@@ -21,21 +21,26 @@ class GiphyLoader extends Component {
   render() {
 
     let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&limit=6`;
+
     if(this.props.keyword.length){
       get(url).then(function(text) {
-        for(var i=0;i<6;i++){
-          console.log(JSON.parse(text).data[i].images.downsized.url)
-        }
+        const results = JSON.parse(text).data.map(e=>
+          <li key={e.toString()}>
+            {e.images.downsized.url}
+          </li>
+        )
+      
           console.log(JSON.parse(text));
+          console.log(results)
         }, function(error) {
           console.log("Failed to fetch data.txt: " + error);
       })
     }
 
     return (
-      <div>
-        test
-      </div> 
+      <ul>
+
+      </ul> 
     );
   }
 }
