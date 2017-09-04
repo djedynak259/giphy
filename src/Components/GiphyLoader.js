@@ -17,20 +17,20 @@ import React, { Component } from 'react';
     }
 
 class GiphyLoader extends Component {
-  constructor(props) {
-    super(props);
-  }
   
   render() {
 
     let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&limit=6`;
-
-    get(url).then(function(text) {
-        console.log(text[0].images.downsized)
-        console.log(JSON.parse(text));
-      }, function(error) {
-        console.log("Failed to fetch data.txt: " + error);
-    })
+    if(this.props.keyword.length){
+      get(url).then(function(text) {
+        for(var i=0;i<6;i++){
+          console.log(JSON.parse(text).data[i].images.downsized.url)
+        }
+          console.log(JSON.parse(text));
+        }, function(error) {
+          console.log("Failed to fetch data.txt: " + error);
+      })
+    }
 
     return (
       <div>
