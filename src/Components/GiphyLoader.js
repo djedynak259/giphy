@@ -22,10 +22,10 @@ class GiphyLoader extends Component {
     this.state = {
       results: null
     }
-    this.resultState = this.resultState.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   }
 
-  resultState(){
+  componentWillReceiveProps(nextProps){
 
     let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&limit=6`;
 
@@ -43,7 +43,7 @@ class GiphyLoader extends Component {
       }, function(error) {
         console.log("Failed to fetch data.txt: " + error);
     })
-    
+
   }
 
   render() {
