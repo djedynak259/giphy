@@ -22,10 +22,31 @@ class GiphyLoader extends Component {
     this.state = {
       results: null
     }
-    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    this.updateImages = this.updateImages.bind(this);
   }
 
-  componentWillReceiveProps(nextProps){
+  componentDidUpdate(a,b){
+
+    if(a.keyword !== this.props.keyword){
+
+      let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&limit=6`;
+
+      get(url).then(text=> {
+        this.setState({
+          results: JSON.parse(text)
+        })
+      
+          console.log(JSON.parse(text));
+          console.log(this.state.results)
+        }, function(error) {
+          console.log("Failed to fetch data.txt: " + error);
+      })
+
+    }
+  }
+
+  updateImages(){
 
     let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&limit=6`;
 
@@ -44,8 +65,11 @@ class GiphyLoader extends Component {
 
   render() {
     const list = this.state.results ? this.state.results.data.map(e=>
-        <li key={e.toString()}>
-          {e.images.downsized.url}
+        <li key={e.images.downsized.url.toString()} >
+          <img  src={e.images.downsized.url}/>
+          <div className='imgInfo'>
+            
+          </div>
         </li>
         ) : 'Search in Box'
 
