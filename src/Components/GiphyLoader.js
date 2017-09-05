@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ListItem from './ListItem.js';
 
     function get(url){
       return new Promise(function(succeed,fail){
@@ -21,17 +22,9 @@ class GiphyLoader extends Component {
     super(props);
     this.state = {
       results: null,
-      show: false
     }
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
     this.updateImages = this.updateImages.bind(this);
-    this.handleToggleClick = this.handleToggleClick.bind(this);
-  }
-
-  handleToggleClick() {
-    this.setState(prevState => ({
-      show: !prevState.show
-    }));
   }
 
   componentDidUpdate(a,b){
@@ -62,9 +55,7 @@ class GiphyLoader extends Component {
       this.setState({
         results: JSON.parse(text)
       })
-    
         console.log(JSON.parse(text));
-        console.log(this.state.results)
       }, function(error) {
         console.log("Failed to fetch data.txt: " + error);
     })
@@ -72,21 +63,17 @@ class GiphyLoader extends Component {
   }
 
   render() {
-    const list = this.state.results ? this.state.results.data.map(e=>
-        <li key={e.images.downsized.url.toString()} >
-          <img  src={e.images.downsized.url}/>
-          <div className='imgInfo'>
-          <button onClick={this.handleToggleClick}>Show More</button>
-            {this.state.show ? (<div>
-              Source: {e.source_tld}</div>
-            ) : (<div></div>)}
-          </div>
-        </li>
-        ) : 'Search in Box'
 
+    let rows = [];
+
+    if(this.state.results) {
+      this.state.results.data.forEach(e=>
+      rows.push(<ListItem load={e}/>)
+      )
+    }
     return (
       <ul>
-        {list}
+        {rows}
       </ul> 
     );
   }
