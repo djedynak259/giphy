@@ -27,10 +27,10 @@ class SearchBar extends Component {
         <input
           className='searchInput'
           type="text"
-          placeholder="Search Ingredients"
+          placeholder="Search Giphys"
           value={this.state.value}
           onChange={this.handleChange}/>
-          <input type='submit' value='Submit'/>
+          <input type='submit' value='Search'/>
       </form>
     );
   }

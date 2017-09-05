@@ -20,10 +20,18 @@ class GiphyLoader extends Component {
   constructor(props){
     super(props);
     this.state = {
-      results: null
+      results: null,
+      show: false
     }
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
     this.updateImages = this.updateImages.bind(this);
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+  }
+
+  handleToggleClick() {
+    this.setState(prevState => ({
+      show: !prevState.show
+    }));
   }
 
   componentDidUpdate(a,b){
@@ -68,7 +76,10 @@ class GiphyLoader extends Component {
         <li key={e.images.downsized.url.toString()} >
           <img  src={e.images.downsized.url}/>
           <div className='imgInfo'>
-            
+          <button onClick={this.handleToggleClick}>Show More</button>
+            {this.state.show ? (<div>
+              Source: {e.source_tld}</div>
+            ) : (<div></div>)}
           </div>
         </li>
         ) : 'Search in Box'

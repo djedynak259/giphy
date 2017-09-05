@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   width: 1100px;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .App-logo {
@@ -20,8 +22,19 @@
 }
 
 .imgInfo {
-  height: 30px;
   border: 1px solid black;
+  border-top: none;
+  border-radius: 0 0 3px 3px;
+  position: relative;
+  top: -4px;
+  line-height: 32px;
+}
+
+.imgInfo button {
+  display: block;
+  margin: 0 auto;
+  background-color: white;
+  border: none;
 }
 
 ul {
@@ -31,8 +44,15 @@ ul {
 
 ul li {
   list-style: none;
+  margin: 10px;
 }
 
 ul li img {
   height: 300px;
+  border-radius: 3px 3px 0 0;
+}
+
+.imgInfo button {
+  display: block;
+  margin: 0 auto;
 }

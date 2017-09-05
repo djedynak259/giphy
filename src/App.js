@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to Reacsdst</h2>
+          <h2>Giphy Generator</h2>
           <SearchBar
             onSubmitTextInput={this.searchSubmit}
           />
