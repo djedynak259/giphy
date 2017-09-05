@@ -3,6 +3,7 @@
   width: 1100px;
   box-sizing: border-box;
   margin: 0 auto;
+  font: 400 14px/1.4em Meta, sans-serif 
 }
 
 .App-logo {
@@ -41,7 +42,7 @@
 
 .imgInfo button:hover .logoEffect {
   transition: all 2s ease;
-  left:200px;
+  left:400px;
 }
 
 .logoEffect {
@@ -61,6 +62,39 @@
   top: 0;
   left: 0;
   cursor: pointer;
+}
+
+.searchForm {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.searchInput{
+  line-height: 24px;
+  font-size: 16px;
+  border-style: solid;
+  padding: 4px 0 4px 10px;
+  border-width: 1px;
+  margin-right: 10px;
+}
+
+.searchButton {
+  height: 33px;
+  font-size: 16px;
+  background-color: white;
+  border-style: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background: grey;
+}
+
+h2 {
+  font-size: 30px;
 }
 
 ul {
