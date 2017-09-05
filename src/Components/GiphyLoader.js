@@ -29,13 +29,9 @@ class GiphyLoader extends Component {
 
     let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&limit=6`;
 
-    get(url).then(function(text) {
+    get(url).then(text=> {
       this.setState({
-        results: JSON.parse(text).data.map(e=>
-        <li key={e.toString()}>
-          {e.images.downsized.url}
-        </li>
-        )
+        results: JSON.parse(text)
       })
     
         console.log(JSON.parse(text));
@@ -47,10 +43,15 @@ class GiphyLoader extends Component {
   }
 
   render() {
+    const list = this.state.results ? this.state.results.data.map(e=>
+        <li key={e.toString()}>
+          {e.images.downsized.url}
+        </li>
+        ) : 'Search in Box'
 
     return (
       <ul>
-
+        {list}
       </ul> 
     );
   }
