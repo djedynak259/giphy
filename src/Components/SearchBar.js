@@ -23,15 +23,18 @@ class SearchBar extends Component {
   
   render() {
     return (
-      <form className='searchForm' onSubmit={this.handleSubmit}>
-        <input
-          className='searchInput'
-          type="text"
-          placeholder="Search Giphys"
-          value={this.state.value}
-          onChange={this.handleChange}/>
-          <input className='searchButton'type='submit' value='Search'/>
-      </form>
+      <div>
+        <form className='searchForm' onSubmit={this.handleSubmit}>
+          <input
+            className='searchInput'
+            type="text"
+            placeholder="Search Giphys"
+            value={this.state.value}
+            onChange={this.handleChange}/>
+            <input className='searchButton'type='submit' value='Search'/>
+        </form>
+        <input onClick={this.props.onRandom} className='searchButton' type='submit' value='Random'/>
+      </div>
     );
   }
 }

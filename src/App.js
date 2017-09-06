@@ -8,15 +8,23 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      search:''
+      search:'',
+      random: false
     }
 
     this.searchSubmit = this.searchSubmit.bind(this);
+    this.randomSubmit = this.randomSubmit.bind(this);
   }
 
   searchSubmit(e) {
     this.setState({
       search: e
+    })
+  }
+
+  randomSubmit(e) {
+    this.setState({
+      random: true
     })
   }
 
@@ -27,9 +35,11 @@ class App extends Component {
           <h2>Giphy Generator</h2>
           <SearchBar
             onSubmitTextInput={this.searchSubmit}
+            onRandom={this.randomSubmit}
           />
         </div>
         <GiphyLoader keyword={this.state.search}
+                      random={this.state.random}
                       />
       </div>
     );

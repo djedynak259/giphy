@@ -37,6 +37,8 @@
   border: none;
   line-height: 32px;
   font-size: 16px;
+  outline: none;
+  
 }
 
 .imgInfo button:hover .logoEffect {
