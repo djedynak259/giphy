@@ -24,10 +24,9 @@
 
 .imgInfo {
   border: 1px solid black;
-  border-top: none;
   border-radius: 0 0 3px 3px;
   position: relative;
-  top: -4px;
+  top: -5px;
   line-height: 32px;
 }
 
