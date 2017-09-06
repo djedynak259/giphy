@@ -13,7 +13,7 @@ class App extends Component {
     }
 
     this.searchSubmit = this.searchSubmit.bind(this);
-    this.randomSubmit = this.randomSubmit.bind(this);
+    // this.randomSubmit = this.randomSubmit.bind(this);
   }
 
   searchSubmit(e) {
@@ -22,11 +22,11 @@ class App extends Component {
     })
   }
 
-  randomSubmit(e) {
-    this.setState({
-      random: true
-    })
-  }
+  // randomSubmit(e) {
+  //   this.setState({
+  //     random: true
+  //   })
+  // }
 
   render() {
     return (
@@ -39,7 +39,6 @@ class App extends Component {
           />
         </div>
         <GiphyLoader keyword={this.state.search}
-                      random={this.state.random}
                       />
       </div>
     );
