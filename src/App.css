@@ -12,7 +12,9 @@ h2 {
   max-width: 1100px;
   box-sizing: border-box;
   margin: 0 auto;
-  font: 400 14px/1.4em Meta, sans-serif 
+  font: 400 14px/1.4em Meta, sans-serif;
+  background-color: white;
+  height: 100%;
 }
 
 .App-header {
