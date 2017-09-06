@@ -2,10 +2,10 @@ Giphy Generator
 
 React web app using the GIPHY API to load gifs.
 
-Docs: https://developers.giphy.com/docs/
+GIPHY API Docs: https://developers.giphy.com/docs/
 
-Web app features the ability to search for gifs and display information about each gif (accompanied by a sweet swooshing animation).  Gifs may be sorted based on their upload date - Newest or Oldest.
+This web app features the ability to display gifs and their information (accompanied by a sweet swooshing hover effect) based on search input.  Gifs may also be sorted based on their upload date - Newest or Oldest.
 
-Once gifs are loaded, you may scroll down to upload additional gifs related to the search term.
+Once gifs are loaded, you may scroll down to show additional gifs related to the search.
 
 app by Dan Jedynak
