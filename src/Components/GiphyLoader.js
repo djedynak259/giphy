@@ -31,11 +31,15 @@ class GiphyLoader extends Component {
 
   componentDidUpdate(a,b){
     if(a.keyword !== this.props.keyword || this.props.random){
+      this.setState(prev =>({
+          results: []
+        }))
       this.updateImages()
     }
   }
 
   updateImages(){
+
     let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&offset=${this.state.offset}&limit=6`;
 
       get(url).then(text=> {
