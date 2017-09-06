@@ -22,11 +22,14 @@ class GiphyLoader extends Component {
     super(props);
     this.state = {
       results: [],
-      offset:0
+      offset:0,
+      sortNew: true
     }
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
     this.updateImages = this.updateImages.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+    this.sortNew = this.sortNew.bind(this);
+    this.sortOld = this.sortOld.bind(this);
   }
 
   componentDidUpdate(a,b){
@@ -43,8 +46,7 @@ class GiphyLoader extends Component {
     let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&offset=${this.state.offset}&limit=6`;
 
       get(url).then(text=> {
-        let arr = []
-        console.log(JSON.parse(text))
+        let arr = [];
         JSON.parse(text).data.forEach(e=>{
           arr.push(e)
         });
@@ -69,6 +71,18 @@ class GiphyLoader extends Component {
       this.updateImages();
     }  
   }
+
+  sortNew() {
+    this.setState({
+      sortNew: true
+    })
+  }
+
+  sortOld() {
+    this.setState({
+      sortNew: false
+    })
+  }
   
   componentDidMount() { 
     window.addEventListener("scroll", this.handleScroll);
@@ -78,11 +92,10 @@ class GiphyLoader extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  render() {
+  render() {   
 
     let rows = [];
 
-   
     if(this.state.results.length > 0) {
       let results = this.state.results
       console.log(results)
@@ -90,10 +103,36 @@ class GiphyLoader extends Component {
       rows.push(<ListItem key={e.images.downsized.url.toString()} load={e}/>)
       )
     }
+
+    if(this.state.sortNew) {
+      rows.sort((a,b)=>{
+        var c = new Date(a.props.load.import_datetime);
+        var d = new Date(b.props.load.import_datetime);
+        return c-d;
+      });
+    }
+
+    if(!this.state.sortNew) {
+      rows.sort((a,b)=>{
+        var c = new Date(a.props.load.import_datetime);
+        var d = new Date(b.props.load.import_datetime);
+        return d-c;
+      });
+    }    
+
     return (
-      <ul>
-        {rows}
-      </ul> 
+      <div className='content'>
+        <div className='sort'>
+          Sort:
+          <div className='sortSwitch'>
+            <div onClick={this.sortNew} className={'sortSwitchL ' + (this.state.sortNew ? 'active':'')}>Newest</div>
+            <div onClick={this.sortOld} className={'sortSwitchR ' + (this.state.sortNew ? '':'active')}>Oldest</div>            
+          </div>
+        </div>
+        <ul>
+          {rows}
+        </ul>
+      </div> 
     );
   }
 }

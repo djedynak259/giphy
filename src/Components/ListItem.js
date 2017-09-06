@@ -22,7 +22,7 @@ class ListItem extends Component {
 
     return (
       <li>
-        <img  src={e.images.downsized.url}/>
+        <img  src={e.images.downsized.url} alt=''/>
         <div className='imgInfo'>
         <button onClick={this.handleToggleClick}>
                     <div className="logoOverflowCheck">
