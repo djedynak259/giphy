@@ -68,7 +68,7 @@ class GiphyLoader extends Component {
 
     if(this.state.results) {
       this.state.results.data.forEach(e=>
-      rows.push(<ListItem load={e}/>)
+      rows.push(<ListItem key={e.images.downsized.url.toString()} load={e}/>)
       )
     }
     return (

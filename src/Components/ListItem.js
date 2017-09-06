@@ -21,7 +21,7 @@ class ListItem extends Component {
   let e = this.props.load;
 
     return (
-      <li key={e.images.downsized.url.toString()} >
+      <li>
         <img  src={e.images.downsized.url}/>
         <div className='imgInfo'>
         <button onClick={this.handleToggleClick}>
@@ -30,7 +30,10 @@ class ListItem extends Component {
           </div>
         Show More</button>
           {this.state.show ? (<div>
-            Source: {e.source_tld}</div>
+            <p>Source: {e.source_tld}</p>
+            <p>UserName: {e.username}</p>
+            <p>Rating: {e.rating}</p>
+            </div>
           ) : (<div></div>)}
         </div>
       </li> 

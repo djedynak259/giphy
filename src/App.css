@@ -45,6 +45,11 @@
   left:400px;
 }
 
+.imgInfo p {
+  margin: 0 0 0 20px;
+  text-align: left;
+}
+
 .logoEffect {
   pointer-events: none;
   background: linear-gradient(90deg, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 48%, white 50%, rgba(255,255,255,1) 52%,rgba(255,255,255,0) 100%);
@@ -100,6 +105,7 @@ h2 {
 ul {
   display: flex;
   flex-wrap: wrap;
+  padding: 0;
 }
 
 ul li {
