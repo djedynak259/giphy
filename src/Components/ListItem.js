@@ -28,7 +28,7 @@ class ListItem extends Component {
                     <div className="logoOverflowCheck">
             <div className="logoEffect"></div>
           </div>
-        Show More</button>
+        {this.state.show === false ? 'Show More' : 'Show Less'}</button>
           {this.state.show ? (<div>
             <p>Source: {e.source_tld}</p>
             <p>UserName: {e.username}</p>
