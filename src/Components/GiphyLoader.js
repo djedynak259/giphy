@@ -125,8 +125,14 @@ class GiphyLoader extends Component {
         <div className='sort'>
           Sort:
           <div className='sortSwitch'>
-            <div onClick={this.sortNew} className={'sortSwitchL ' + (this.state.sortNew ? 'active':'')}>Newest</div>
-            <div onClick={this.sortOld} className={'sortSwitchR ' + (this.state.sortNew ? '':'active')}>Oldest</div>            
+            <div onClick={this.sortNew} 
+                className={'sortSwitchL ' + (this.state.sortNew ? 'active':'')}>
+                Newest
+            </div>
+            <div onClick={this.sortOld} 
+                className={'sortSwitchR ' + (this.state.sortNew ? '':'active')}>
+                Oldest
+            </div>            
           </div>
         </div>
         <ul>

@@ -1,3 +1,13 @@
+h2 {
+  font-size: 38px;
+  font-family: 'Encode Sans', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  user-select: none;
+  cursor: default;
+  margin: 20px 0 20px 36px;
+}
+
 .App {
   max-width: 1100px;
   box-sizing: border-box;
@@ -6,19 +16,36 @@
 }
 
 .App-header {
-  background: linear-gradient(to top right, #222, #233);
+  background: linear-gradient(to top right, #011F2C, #233);
   border-radius: 0 0 3px 3px;
-  height: 150px;
+  height: 80px;
   padding: 20px;
   color: white;
-}
-
-.App-intro {
-  font-size: large;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .content {
   text-align: right;
+}
+
+.content ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-top: 6px;
+}
+
+.content ul li {
+  list-style: none;
+  margin: 10px;
+}
+
+.content ul li img {
+  height: 300px;
+  border-radius: 3px 3px 0 0;
 }
 
 .imgInfo {
@@ -99,12 +126,12 @@
 }
 
 .searchButton:hover {
-  background: #c2f0c2;
+  background: #6B8D9C;
 }
 
 .sort {
   position: relative;
-  margin-top: 6px;
+  margin-top: 16px;
   margin-right: 30px;
   display: inline-block;
   user-select: none; 
@@ -117,7 +144,7 @@
 }
 
 .sortSwitch .active {
-  background-color:  #5cd65c;
+  background-color:  #5c8799;
 }
 
 .sortSwitchL, .sortSwitchR {
@@ -129,7 +156,7 @@
 }
 
 .sortSwitchL:hover, .sortSwitchR:hover {
-  background-color: #c2f0c2;
+  background-color: #97A9B1;
 }
 
 .sortSwitchL {
@@ -141,27 +168,31 @@
   border-radius: 0 3px 3px 0;  
 }
 
-h2 {
-  font-size: 38px;
-  font-family: 'Encode Sans', sans-serif;
-  font-weight: 500;
-  text-align: center;
-  user-select: none;
-  cursor: default;
+/*Media*/
+
+@media screen and (max-width: 645px) {
+  .App-header {
+    display:block;
+  }
+  .App-header h2 {
+    margin-left: 0;
+  }
+  .content ul {
+    display: flex;
+    justify-content: center;
+  }
+  .content {
+    text-align: center;   
+  }
+  .content ul li img {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+  }  
 }
 
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-}
-
-ul li {
-  list-style: none;
-  margin: 10px;
-}
-
-ul li img {
-  height: 300px;
-  border-radius: 3px 3px 0 0;
+@media screen and (max-width: 345px) {
+  .App-header h2 {
+    font-size: 32px;
+  }
 }
