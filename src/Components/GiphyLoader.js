@@ -21,53 +21,68 @@ class GiphyLoader extends Component {
   constructor(props){
     super(props);
     this.state = {
-      results: null,
+      results: [],
+      offset:0
     }
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
     this.updateImages = this.updateImages.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidUpdate(a,b){
-
     if(a.keyword !== this.props.keyword){
-
-      let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&limit=6`;
-
-      get(url).then(text=> {
-        this.setState({
-          results: JSON.parse(text)
-        })
-      
-          console.log(JSON.parse(text));
-          console.log(this.state.results)
-        }, function(error) {
-          console.log("Failed to fetch data.txt: " + error);
-      })
-
+      this.updateImages()
     }
   }
 
   updateImages(){
 
-    let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&limit=6`;
+      let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&offset=${this.state.offset}&limit=6`;
 
-    get(url).then(text=> {
-      this.setState({
-        results: JSON.parse(text)
+      get(url).then(text=> {
+        let arr = []
+        JSON.parse(text).data.forEach(e=>{
+          arr.push(e)
+        });
+        this.setState(prev =>({
+          results: prev.results.concat(arr)
+        }))
+        }, function(error) {
+          console.log("Failed to fetch data.txt: " + error);
       })
-        console.log(JSON.parse(text));
-      }, function(error) {
-        console.log("Failed to fetch data.txt: " + error);
-    })
 
+  }
+
+  handleScroll() {
+    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight) {
+      this.setState(prev =>({
+          offset: (prev.offset + 6)
+        }))
+      this.updateImages();
+    }  
+  }
+  
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   render() {
 
     let rows = [];
 
-    if(this.state.results) {
-      this.state.results.data.forEach(e=>
+    if(this.state.results.length > 0) {
+      let results = this.state.results
+      console.log(results)
+      results.forEach(e=>
       rows.push(<ListItem key={e.images.downsized.url.toString()} load={e}/>)
       )
     }
