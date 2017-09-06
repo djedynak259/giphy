@@ -39,7 +39,6 @@ class GiphyLoader extends Component {
     let url = `http://api.giphy.com/v1/gifs/search?q=${this.props.keyword}&api_key=a5c163ee9c29473580e365c6cc226a99&offset=${this.state.offset}&limit=6`;
 
       if(this.props.random){
-        console.log('test')
         url =`http://api.giphy.com/v1/gifs/random?api_key=a5c163ee9c29473580e365c6cc226a99`;
 
         get(url).then(text=> {
@@ -55,19 +54,21 @@ class GiphyLoader extends Component {
       })
       }
       
-
-      get(url).then(text=> {
-        let arr = []
-        console.log(JSON.parse(text))
-        JSON.parse(text).data.forEach(e=>{
-          arr.push(e)
-        });
-        this.setState(prev =>({
-          results: prev.results.concat(arr)
-        }))
-        }, function(error) {
-          console.log("Failed to fetch data.txt: " + error);
-      })
+      else {
+        get(url).then(text=> {
+          let arr = []
+          console.log(JSON.parse(text))
+          JSON.parse(text).data.forEach(e=>{
+            arr.push(e)
+          });
+          this.setState(prev =>({
+            results: prev.results.concat(arr)
+          }))
+          }, function(error) {
+            console.log("Failed to fetch data.txt: " + error);
+        })
+        this.props.random = false;
+      }
 
   }
 
@@ -98,10 +99,13 @@ class GiphyLoader extends Component {
     let rows = [];
 
     if(this.state.results.length > 0) {
-      let results = this.state.results
-      console.log(results)
-      results.forEach(e=>
-      rows.push(<ListItem key={e.images.downsized.url.toString()} load={e}/>)
+        let results = this.state.results
+        console.log(results)
+        results.forEach(e=> {
+          if(e.images) {
+            rows.push(<ListItem key={e.images.downsized.url.toString()} load={e}/>)
+          }
+        }  
       )
     }
     return (
