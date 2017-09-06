@@ -29,7 +29,7 @@ class ListItem extends Component {
             <div className="logoEffect"></div>
           </div>
         {this.state.show === false ? 'Show More' : 'Show Less'}</button>
-          {this.state.show ? (<div>
+          {this.state.show ? (<div className='infoWrap'>
             <p>Source: {e.source_tld}</p>
             <p>UserName: {e.username}</p>
             <p>Rating: {e.rating}</p>
