@@ -53,8 +53,7 @@ class GiphyLoader extends Component {
         }))
         }, function(error) {
           console.log("Failed to fetch data.txt: " + error);
-      })
-
+      }) 
   }
 
   handleScroll() {
@@ -71,7 +70,7 @@ class GiphyLoader extends Component {
     }  
   }
   
-  componentDidMount() {
+  componentDidMount() { 
     window.addEventListener("scroll", this.handleScroll);
   }
 
@@ -83,6 +82,7 @@ class GiphyLoader extends Component {
 
     let rows = [];
 
+   
     if(this.state.results.length > 0) {
       let results = this.state.results
       console.log(results)
